@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspect & Restore Image — ClearSight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .action-pill-row {
+      display: flex;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .action-btn-pill {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .action-btn-pill.active {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      color: #000;
+    }
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .comp-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+    .comp-box img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      display: block;
+    }
+    .comp-lbl {
+      padding: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+      background: rgba(17, 24, 39, 0.8);
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body class="page-analyze">
+  <header class="header">
+    <div class="brand-row">
+      <div class="logo-icon">CS</div>
+      <div class="brand-info">
+        <h1>ClearSight</h1>
+        <span class="tagline">Web Image Inspector & Enhancer</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="analyze-main" style="padding: 24px;">
+    <p class="analyze-hint" id="source-hint"></p>
+    
+    <div class="action-pill-row">
+      <button class="action-btn-pill active" id="btn-mode-analyze" onclick="switchAction('analyze')">
+        🔍 Deepfake Check
+      </button>
+      <button class="action-btn-pill" id="btn-mode-restore" onclick="switchAction('restore')">
+        ✨ AI Restore
+      </button>
+    </div>
+
+    <div class="preview-area" id="analyze-preview"></div>
+    
+    <div class="loading show" id="analyze-loading">
+      <div class="spinner"></div>
+      <span class="loading-text" id="loading-label">Downloading image...</span>
+    </div>
+    
+    <div class="result" id="analyze-result"></div>
+
+    <div id="restore-comp-area" style="display: none;">
+      <div class="comparison-row">
+        <div class="comp-box">
+          <div class="comp-lbl">Original</div>
+          <img id="comp-orig-img" src="" alt="Original">
+        </div>
+        <div class="comp-box">
+          <div class="comp-lbl" style="color: var(--accent-cyan);">Restored</div>
+          <img id="comp-rest-img" src="" alt="Restored">
+        </div>
+      </div>
+      <a href="#" download="restored_web_image.jpg" class="download-link" id="ext-download-btn" style="margin-top: 14px;">
+        ⬇ Download Restored Image
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="server-status" id="server-status">
+      <span class="status-dot"></span>
+      <span class="status-text">Checking server...</span>
+    </div>
+    <span class="version">v2.0</span>
+  </footer>
+
+  <script src="analyze.js"></script>
+</body>
+</html>

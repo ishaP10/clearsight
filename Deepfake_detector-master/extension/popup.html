@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearSight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="brand-row">
+      <div class="logo-icon">CS</div>
+      <div class="brand-info">
+        <h1>ClearSight</h1>
+        <span class="tagline">Forensic & Restoration Studio</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="image">
+      <span class="tab-num">01</span>
+      <span class="tab-label">Image</span>
+    </button>
+    <button class="tab" data-tab="video">
+      <span class="tab-num">02</span>
+      <span class="tab-label">Video</span>
+    </button>
+    <button class="tab" data-tab="restore">
+      <span class="tab-num">03</span>
+      <span class="tab-label">Restore</span>
+    </button>
+  </nav>
+
+  <!-- Image Tab -->
+  <main class="tab-content active" id="image-tab">
+    <div class="section-header">
+      <h2 class="section-title">Image Deepfake Analysis</h2>
+      <span class="section-formats">JPG, PNG, WEBP</span>
+    </div>
+    
+    <div class="upload-area" data-type="image">
+      <input type="file" id="image-input" accept="image/png, image/jpeg, image/webp" hidden>
+      <span class="upload-icon">📷</span>
+      <span class="upload-text">Drop image or click to browse</span>
+    </div>
+    
+    <div class="preview-area" id="image-preview"></div>
+    <div class="file-info" id="image-filename"></div>
+    
+    <button class="analyze-btn" id="image-btn" disabled>Run Deepfake Analysis</button>
+    
+    <div class="loading" id="image-loading">
+      <div class="spinner"></div>
+      <span class="loading-text">Analyzing neural features...</span>
+    </div>
+    
+    <div class="result" id="image-result"></div>
+  </main>
+
+  <!-- Video Tab -->
+  <main class="tab-content" id="video-tab">
+    <div class="section-header">
+      <h2 class="section-title">Video Deepfake Analysis</h2>
+      <span class="section-formats">MP4, WEBM, MOV</span>
+    </div>
+    
+    <div class="upload-area" data-type="video">
+      <input type="file" id="video-input" accept="video/mp4, video/webm, video/quicktime" hidden>
+      <span class="upload-icon">🎬</span>
+      <span class="upload-text">Drop video or click to browse</span>
+    </div>
+    
+    <div class="preview-area" id="video-preview"></div>
+    <div class="file-info" id="video-filename"></div>
+    
+    <button class="analyze-btn" id="video-btn" disabled>Run Multi-Frame Analysis</button>
+    
+    <div class="loading" id="video-loading">
+      <div class="spinner"></div>
+      <span class="loading-text">Evaluating video frames...</span>
+    </div>
+    
+    <div class="result" id="video-result"></div>
+  </main>
+
+  <!-- Restore Tab -->
+  <main class="tab-content" id="restore-tab">
+    <div class="section-header">
+      <h2 class="section-title">AI Image Restoration</h2>
+      <span class="section-formats">Denoise, Clarity, Portrait</span>
+    </div>
+    
+    <div class="upload-area" data-type="restore">
+      <input type="file" id="restore-input" accept="image/png, image/jpeg, image/webp" hidden>
+      <span class="upload-icon">✨</span>
+      <span class="upload-text">Drop photo to restore & enhance</span>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="restore-preset-row">
+      <button class="preset-pill active" data-mode="auto">🪄 Auto</button>
+      <button class="preset-pill" data-mode="denoise">🧼 Denoise</button>
+      <button class="preset-pill" data-mode="clarity">🔍 Sharp</button>
+      <button class="preset-pill" data-mode="low_light">🌙 Low-Light</button>
+      <button class="preset-pill" data-mode="portrait">👤 Portrait</button>
+    </div>
+    
+    <div class="preview-area" id="restore-preview"></div>
+    <div class="file-info" id="restore-filename"></div>
+    
+    <button class="analyze-btn restore-btn" id="restore-btn" disabled>Enhance & Restore Image</button>
+    
+    <div class="loading" id="restore-loading">
+      <div class="spinner"></div>
+      <span class="loading-text">Synthesizing restored pixels...</span>
+    </div>
+    
+    <div class="result" id="restore-result"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <div class="server-status" id="server-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking server...</span>
+      </div>
+    </div>
+    <span class="version">v2.0</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
